@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 
 function App() {
+  var page = setTimeout(function(){
+    window.location.reload(false);
+  },25000)
   const [value, ResetForm] = useState("");
   const formik = useFormik({
     initialValues: {
@@ -23,7 +26,8 @@ function App() {
           },
         });
         alert("data saved");
-        ResetForm("")
+        
+        ResetForm("");
       } catch (error) {
         console.log(error);
       }
@@ -44,6 +48,7 @@ function App() {
     }
     fetchData();
   }, []);
+ 
 
   return (
     <>
@@ -91,7 +96,9 @@ function App() {
               required
             ></input>
             <br />
-            <button type="submit">Submit</button>
+            <button type="submit" onSubmit={page} >
+              Submit
+            </button>
             <br />
 
             <button type="reset" onClick={() => ResetForm(() => "")}>
